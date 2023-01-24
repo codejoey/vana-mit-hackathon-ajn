@@ -20,7 +20,7 @@ export default function Home() {
   const callTextToImageAPI = async (event) => {
     event.preventDefault();
     setIsLoading(true);
-
+/*
     try {
       await vanaApiPost(`jobs/text-to-image`, {
         prompt: prompt.replace(/\bme\b/i, "{target_token}"), // Replace the word "me" with "{target_token}" in the prompt to include yourself in the picture
@@ -35,6 +35,22 @@ export default function Home() {
       setErrorMessage("An error occurred while generating the image");
     }
 
+    setIsLoading(false);
+  };
+*/
+    try {
+      await vanaApiPost(`/images/generations`, {
+        prompt: prompt.replace(/\bme\b/i, "{target_token}"), // Replace the word "me" with "{target_token}" in the prompt to include yourself in the picture
+        //exhibit_name: "text-to-image", // How your images are grouped in your gallery. For this demo, all images will be grouped in the `text-to-image` exhibit
+        n_samples: 6,
+        //seed: -1, // The inference seed: A non-negative integer fixes inference so inference on the same (model, prompt) produces the same output
+      });
+      alert(
+        "Successfully submitted prompt. New images will appear in about 20 seconds."
+      );
+    } catch (error) {
+      setErrorMessage("An error occurred while generating the image");
+    }
     setIsLoading(false);
   };
 
