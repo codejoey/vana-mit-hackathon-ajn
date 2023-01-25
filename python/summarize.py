@@ -43,3 +43,5 @@ def summarize(text, per):
 
 
 print(summarize(article.text, 0.05))
+
+# https://www.activestate.com/blog/how-to-do-text-summarization-with-python/
